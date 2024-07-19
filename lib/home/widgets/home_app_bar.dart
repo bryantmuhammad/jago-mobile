@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:jago/widgets/language.dart';
+import 'package:jago/home/widgets/language.dart';
 
-class CustomAppBar extends StatefulWidget {
-  const CustomAppBar({
+class HomeAppBar extends StatefulWidget {
+  const HomeAppBar({
     super.key,
     required this.child,
   });
@@ -11,10 +11,10 @@ class CustomAppBar extends StatefulWidget {
   final Widget child;
 
   @override
-  State<CustomAppBar> createState() => _CustomAppBarState();
+  State<HomeAppBar> createState() => _HomeAppBarState();
 }
 
-class _CustomAppBarState extends State<CustomAppBar> {
+class _HomeAppBarState extends State<HomeAppBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

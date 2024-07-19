@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jago/pages/homepage.dart';
+import 'package:jago/home/view/home_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 final kColorScheme = ColorScheme.fromSeed(
