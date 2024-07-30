@@ -6,11 +6,9 @@ import 'package:jago/util/currency_format.dart';
 class EventCard extends StatelessWidget {
   const EventCard({
     super.key,
-    this.height = 180,
     required this.event,
   });
 
-  final double height;
   final Event event;
 
   @override
@@ -23,21 +21,18 @@ class EventCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          margin: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-          height: height,
+        AspectRatio(
+          aspectRatio: 2 / 1,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: Image.network(
               event.image,
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
         ),
         const SizedBox(
-          height: 15,
+          height: 10,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -52,7 +47,7 @@ class EventCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 15,
+                height: 10,
               ),
               Row(
                 children: [
@@ -72,7 +67,7 @@ class EventCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 10,
+                height: 8,
               ),
               Row(
                 children: [
@@ -83,16 +78,21 @@ class EventCard extends StatelessWidget {
                   const SizedBox(
                     width: 10,
                   ),
-                  Text(
-                    '${event.province}, ${event.location}',
-                    style: const TextStyle(
-                      color: Colors.grey,
+                  Expanded(
+                    child: Text(
+                      softWrap: false,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      '${event.province}, ${event.location}',
+                      style: const TextStyle(
+                        color: Colors.grey,
+                      ),
                     ),
                   )
                 ],
               ),
               const SizedBox(
-                height: 15,
+                height: 10,
               ),
               Text(
                 'IDR ${CurrencyFormat.convertToIdr(event.lowerPrice, 2)}',

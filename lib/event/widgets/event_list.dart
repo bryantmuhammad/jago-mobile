@@ -20,7 +20,7 @@ class _EventListState extends State<EventList> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 0.9);
+    _pageController = PageController(viewportFraction: 0.88);
     _fetchEvent();
   }
 
@@ -41,8 +41,6 @@ class _EventListState extends State<EventList> {
       setState(() {
         eventLists = tempList;
       });
-
-      print(eventLists[0].lowerPrice);
     } catch (e) {
       print(e);
     }
@@ -50,46 +48,30 @@ class _EventListState extends State<EventList> {
 
   @override
   Widget build(BuildContext context) {
-    List<int> events = [1, 2, 3, 4, 5];
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        double viewportFraction =
+            (MediaQuery.of(context).orientation == Orientation.portrait)
+                ? 0.88
+                : 0.4;
 
-    // List<Event> dummyEvent = [
-    //   Event(
-    //       id: 1,
-    //       name: 'Event Pertama',
-    //       location: 'Semarang',
-    //       link: 'event.com',
-    //       province: 'Semarang',
-    //       image:
-    //           "https://uhdwallpapers.org/uploads/converted/20/01/14/the-mandalorian-5k-1920x1080_477555-mm-90.jpg",
-    //       dateStart: DateTime.now(),
-    //       lowerPrice: 100000),
-    //   Event(
-    //       id: 2,
-    //       name: 'Event Kedua',
-    //       location: 'Semarang',
-    //       link: 'event.com',
-    //       province: 'Semarang',
-    //       image: 'https://wallpaperaccess.com/full/2637581.jpg',
-    //       dateStart: DateTime.now(),
-    //       lowerPrice: 200000),
-    //   Event(
-    //       id: 3,
-    //       name: 'Event Ketiga',
-    //       location: 'Semarang',
-    //       link: 'event.com',
-    //       province: 'Semarang',
-    //       image:
-    //           'https://uhdwallpapers.org/uploads/converted/20/01/14/the-mandalorian-5k-1920x1080_477555-mm-90.jpg',
-    //       dateStart: DateTime.now(),
-    //       lowerPrice: 150000),
-    // ];
+        _pageController = PageController(viewportFraction: viewportFraction);
 
-    return PageView.builder(
-      controller: _pageController,
-      itemCount: eventLists.length,
-      itemBuilder: (context, index) {
-        return EventCard(
-          event: eventLists[index],
+        return SizedBox(
+          height: 350,
+          child: PageView.builder(
+            padEnds: false,
+            controller: _pageController,
+            itemCount: eventLists.length,
+            itemBuilder: (context, index) {
+              return Container(
+                padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                child: EventCard(
+                  event: eventLists[index],
+                ),
+              );
+            },
+          ),
         );
       },
     );

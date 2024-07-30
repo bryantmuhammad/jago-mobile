@@ -25,7 +25,7 @@ class _HomeCarouselState extends State<HomeCarousel> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 0.8, initialPage: 1);
+    _pageController = PageController(viewportFraction: 0.88, initialPage: 1);
 
     // _timer = Timer.periodic(const Duration(seconds: 7), _animatePage);
   }
@@ -34,9 +34,9 @@ class _HomeCarouselState extends State<HomeCarousel> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: 200,
-          width: MediaQuery.of(context).size.width,
+        AspectRatio(
+          // aspectRatio: 3 / 1,
+          aspectRatio: 2 / 1,
           child: PageView.builder(
             pageSnapping: true,
             controller: _pageController,
@@ -51,7 +51,10 @@ class _HomeCarouselState extends State<HomeCarousel> {
                 padding: const EdgeInsets.all(10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
-                  child: Image.network(images[index % images.length]),
+                  child: Image.network(
+                    fit: BoxFit.fill,
+                    images[index % images.length],
+                  ),
                 ),
               );
             },
